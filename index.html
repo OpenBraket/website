@@ -611,7 +611,7 @@
                 We are not the largest. We are <strong>fundamental</strong>, <strong>hype-free</strong>, and <strong>innovation-driven</strong> to design solutions that serve humankind at large — easy, reliable, safe, and fast.
             </p>
             <div class="hero-cta">
-                <a href="/cdn-cgi/l/email-protection#05616c776066716a772b6a75606b6777646e6071456268646c692b666a683a7670676f60667138556477716b6077766d6c752037354c6b74706c777c" class="btn btn-primary">Partner With Us</a>
+                <a href="director.openbraket@gmail.com" class="btn btn-primary">Partner With Us</a>
                 <a href="#solutions" class="btn btn-secondary">Our Technology</a>
             </div>
             <p class="hero-substatement">
@@ -810,13 +810,42 @@
             We invite investors, enterprise partners, and quantum researchers to collaborate with us in pioneering the next generation of quantum algorithms for real-world applications.
         </p>
         
-        <p class="contact-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8de9e4ffe8eef9e2ffa3e2fde8e3efffece6e8f9cdeae0ece4e1a3eee2e0">[email&#160;protected]</a></p>
+        <p class="contact-email"><span id="email-display"></span></p>
+        
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+            // Email protection - assembled client-side
+            const user = 'director.openbraket';
+            const domain = 'gmail.com';
+            const emailDisplay = document.getElementById('email-display');
+            emailDisplay.textContent = user + '@' + domain;
+            emailDisplay.style.cursor = 'pointer';
+            emailDisplay.onclick = function() {
+                window.location.href = 'mailto:' + user + '@' + domain;
+            };
+        </script>
         
         <div class="hero-cta">
-            <a href="/cdn-cgi/l/email-protection#6b0f02190e081f041945041b0e0509190a000e1f2b0c060a02074508040654181e09010e081f563808030e0f1e070e4e595b0a4e595b280a0707" class="btn btn-primary">Schedule a Call</a>
+            <a href="#" id="schedule-call-btn" class="btn btn-primary">Schedule a Call</a>
             <a href="#focus" class="btn btn-secondary">Learn More</a>
         </div>
+        
+        <script>
+            // Protected email link for Schedule a Call
+            document.getElementById('schedule-call-btn').onclick = function(e) {
+                e.preventDefault();
+                const user = 'director.openbraket';
+                const domain = 'gmail.com';
+                window.location.href = 'mailto:' + user + '@' + domain + '?subject=Schedule%20a%20Call';
+            };
+        </script>
     </section>
 
     <footer>
         <div class="footer-logo">
+            <img src="logo.jpg" alt="OpenBraket">
+        </div>
+        <p>&copy; 2026 <strong>OpenBraket</strong>. Pioneering Quantum Algorithms for Near-Term Applications.</p>
+        <p style="margin-top: 6px;">Bangalore, India | Global Quantum Computing Innovation</p>
+    </footer>
+</body>
+</html>
