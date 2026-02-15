@@ -27,6 +27,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 20px;
         }
 
         body {
@@ -64,6 +65,14 @@
             display: flex;
             align-items: center;
             gap: 11px;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .logo-icon-img {
@@ -161,7 +170,7 @@
 
         .hero h1 {
             font-size: clamp(3.2rem, 6.5vw, 5.2rem);
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 28px;
             letter-spacing: -0.03em;
             line-height: 1.08;
@@ -278,6 +287,7 @@
             background-clip: text;
             margin-bottom: 18px;
             letter-spacing: -0.025em;
+            line-height: 1.35;
         }
 
         .section-description {
@@ -544,45 +554,210 @@
             color: var(--color-text-primary);
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-primary-pink);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 1024px) {
             .solutions-grid,
             .focus-cards {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 768px) {
+            nav {
+                padding: 14px 20px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
             nav ul {
-                gap: 18px;
+                position: fixed;
+                top: 71px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                padding: 20px 0;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 12px 0;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            nav ul li:last-child {
+                border-bottom: none;
             }
 
             nav a {
-                font-size: 13.5px;
+                font-size: 15px;
+                display: block;
+                padding: 8px 20px;
             }
 
             .nav-cta {
-                padding: 9px 18px;
+                margin: 10px 20px;
+                padding: 12px 20px;
+                display: inline-block;
+            }
+
+            .logo-text {
+                font-size: 14px;
+            }
+
+            .logo-icon-img {
+                height: 32px;
             }
 
             section {
-                padding: 56px 22px;
+                padding: 40px 22px;
+                padding-top: 90px;
             }
 
             .hero {
-                padding-top: 110px;
+                padding-top: 100px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 24px;
+            }
+
+            .hero h2 {
+                font-size: 1.1rem;
+                margin-bottom: 28px;
+            }
+
+            .hero-supporting {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .focus-cards {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+                line-height: 1.4;
+            }
+
+            .section-description {
+                font-size: 0.95rem;
+            }
+
+            .section-header {
+                margin-bottom: 48px;
+            }
+
+            .focus-section {
+                padding: 40px 22px;
+                padding-top: 90px;
+            }
+
+            .final-cta {
+                padding: 40px 22px;
+                padding-top: 90px;
+            }
+
+            .final-cta h2 {
+                font-size: 2rem;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            .hero h2 {
+                font-size: 1rem;
+                margin-bottom: 24px;
             }
 
             .stats-grid {
                 grid-template-columns: 1fr;
             }
 
-            .logo-icon-img {
-                height: 36px;
+            .hero-cta {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .contact-email {
+                font-size: 1rem;
+                word-break: break-all;
             }
         }
     </style>
@@ -591,10 +766,17 @@
     <header>
         <nav>
             <div class="logo-container">
-                <img class="logo-icon-img" src="logo.jpg" alt="OpenBraket">
-                <span class="logo-text"><span class="logo-text-open">Open</span><span class="logo-text-braket">Braket</span></span>
+                <a href="#" class="logo-link">
+                    <img class="logo-icon-img" src="logo.jpg" alt="OpenBraket">
+                    <span class="logo-text"><span class="logo-text-open">Open</span><span class="logo-text-braket">Braket</span></span>
+                </a>
             </div>
-            <ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-menu">
                 <li><a href="#focus">Focus</a></li>
                 <li><a href="#solutions">Solutions</a></li>
                 <li><a href="#ip">IP & Technology</a></li>
@@ -611,7 +793,7 @@
                 We are not the largest. We are <strong>fundamental</strong>, <strong>hype-free</strong>, and <strong>innovation-driven</strong> to design solutions that serve humankind at large — easy, reliable, safe, and fast.
             </p>
             <div class="hero-cta">
-                <a href="director.openbraket@gmail.com" class="btn btn-primary">Partner With Us</a>
+                <a href="mailto:contact@openbraket.com?subject=Partnership%20Inquiry" class="btn btn-primary">Partner With Us</a>
                 <a href="#solutions" class="btn btn-secondary">Our Technology</a>
             </div>
             <p class="hero-substatement">
@@ -812,10 +994,10 @@
         
         <p class="contact-email"><span id="email-display"></span></p>
         
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        <script>
             // Email protection - assembled client-side
-            const user = 'director.openbraket';
-            const domain = 'gmail.com';
+            const user = 'contact';
+            const domain = 'openbraket.com';
             const emailDisplay = document.getElementById('email-display');
             emailDisplay.textContent = user + '@' + domain;
             emailDisplay.style.cursor = 'pointer';
@@ -833,8 +1015,8 @@
             // Protected email link for Schedule a Call
             document.getElementById('schedule-call-btn').onclick = function(e) {
                 e.preventDefault();
-                const user = 'director.openbraket';
-                const domain = 'gmail.com';
+                const user = 'contact';
+                const domain = 'openbraket.com';
                 window.location.href = 'mailto:' + user + '@' + domain + '?subject=Schedule%20a%20Call';
             };
         </script>
@@ -845,7 +1027,35 @@
             <img src="logo.jpg" alt="OpenBraket">
         </div>
         <p>&copy; 2026 <strong>OpenBraket</strong>. Pioneering Quantum Algorithms for Near-Term Applications.</p>
-        <p style="margin-top: 6px;">Bangalore, India | Global Quantum Computing Innovation</p>
+        <p style="margin-top: 6px;">Bengaluru, India | Global Quantum Computing Innovation</p>
     </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
