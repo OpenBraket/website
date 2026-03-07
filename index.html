@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenBraket - Quantum Algorithm Development for Real-World Applications</title>
+    <title>OpenBraket</title>
+    <link rel="icon" type="image/jpeg" href="logo.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-primary-pink: #E91E8C;
-            --color-primary-purple: #8B5CF6;
-            --color-background: #FAFAFA;
-            --color-surface: #FFFFFF;
-            --color-text-primary: #18181B;
-            --color-text-secondary: #52525B;
-            --color-border: #E4E4E7;
+            --color-primary-pink: #FF1B8D;
+            --color-primary-purple: #A78BFA;
+            --color-accent-cyan: #06B6D4;
+            --color-accent-green: #10B981;
+            --color-background: #0A0A0F;
+            --color-surface: #141419;
+            --color-surface-elevated: #1C1C24;
+            --color-surface-hover: #232330;
+            --color-text-primary: #F9FAFB;
+            --color-text-secondary: #D1D5DB;
+            --color-text-muted: #9CA3AF;
+            --color-border: #27272F;
+            --color-border-light: #3F3F46;
             --max-width: 1320px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 20px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,14 +40,12 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Header */
+        /* ── HEADER ── */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
+            top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
         }
@@ -55,86 +53,51 @@
         nav {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 18px 40px;
+            padding: 16px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-        }
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-icon-img { height: 36px; width: auto; object-fit: contain; }
 
-        .logo-link {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        .logo-text { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
+        .logo-text-open   { color: var(--color-primary-pink); }
+        .logo-text-braket { color: var(--color-primary-purple); }
 
-        .logo-icon-img {
-            height: 42px;
-            opacity: 0.98;
-        }
-
-        .logo-text {
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-        }
-
-        .logo-text-open {
-            color: #E91E8C;
-        }
-
-        .logo-text-braket {
-            color: #8B5CF6;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 44px;
-            list-style: none;
-            align-items: center;
-        }
-
-        nav a {
+        .nav-menu { display: flex; gap: 36px; list-style: none; align-items: center; }
+        .nav-menu a {
             text-decoration: none;
             color: var(--color-text-secondary);
             font-weight: 500;
             font-size: 15px;
-            transition: color 0.15s ease;
+            transition: color 0.2s ease;
         }
-
-        nav a:hover {
-            color: var(--color-text-primary);
-        }
+        .nav-menu a:hover { color: var(--color-text-primary); }
 
         .nav-cta {
-            padding: 10px 26px;
-            background: var(--color-primary-pink);
+            padding: 10px 24px;
+            background: linear-gradient(135deg, var(--color-primary-pink), var(--color-primary-purple));
             color: white !important;
-            border-radius: 7px;
+            border-radius: 8px;
             font-weight: 600;
-            transition: all 0.15s ease;
+            transition: all 0.2s ease;
         }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255, 27, 141, 0.3); }
 
-        .nav-cta:hover {
-            background: #D1188B;
-            transform: translateY(-0.5px);
-        }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+        .menu-toggle span { width: 24px; height: 2px; background: var(--color-text-primary); transition: all 0.3s ease; }
 
-        /* Section Base */
+        /* ── SECTIONS ── */
         section {
-            padding: 96px 40px;
+            padding: 64px 40px;
             max-width: var(--max-width);
             margin: 0 auto;
+            scroll-margin-top: 72px;
         }
 
-        /* Hero Section */
+        /* ── HERO ── */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -142,919 +105,583 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-top: 140px;
+            padding-top: 120px;
             position: relative;
         }
-
-        /* Subtle grid pattern background */
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-            background-size: 48px 48px;
-            opacity: 0.4;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100%; max-width: 1400px; height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(167, 139, 250, 0.08), transparent 70%);
             pointer-events: none;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1040px;
+        .hero-content { position: relative; z-index: 1; max-width: 1000px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-light);
+            border-radius: 24px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: var(--color-text-secondary);
         }
+        .hero-badge-dot {
+            width: 6px; height: 6px;
+            background: var(--color-accent-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
         .hero h1 {
-            font-size: clamp(3.2rem, 6.5vw, 5.2rem);
-            font-weight: 500;
-            margin-bottom: 28px;
-            letter-spacing: -0.03em;
-            line-height: 1.08;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.035em;
+            line-height: 1.1;
+        }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--color-primary-pink), var(--color-primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero h1 .hero-text-open {
-            color: #E91E8C;
-        }
-
-        .hero h1 .hero-text-braket {
-            color: #8B5CF6;
-        }
-
-        .hero h2 {
-            font-size: clamp(1.15rem, 2.2vw, 1.65rem);
-            font-weight: 400;
-            color: var(--color-text-primary);
-            margin-bottom: 36px;
-            line-height: 1.48;
-            max-width: 920px;
+        .hero-subtitle {
+            font-size: clamp(1.15rem, 2vw, 1.5rem);
+            color: var(--color-text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.5;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .hero-supporting {
-            font-size: 1.0625rem;
-            color: var(--color-text-secondary);
-            max-width: 820px;
-            margin: 0 auto 44px;
-            line-height: 1.65;
-        }
-
-        .hero-supporting strong {
-            color: var(--color-primary-purple);
-            font-weight: 600;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin-bottom: 44px;
-            flex-wrap: wrap;
-        }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 48px; flex-wrap: wrap; justify-content: center; }
 
         .btn {
-            padding: 14px 34px;
+            padding: 14px 32px;
             font-size: 15.5px;
             font-weight: 600;
-            border-radius: 7px;
+            border-radius: 8px;
             text-decoration: none;
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 7px;
+            gap: 8px;
             cursor: pointer;
             border: none;
         }
-
-        .btn::after {
-            content: '→';
-            font-size: 1.1rem;
-            transition: transform 0.2s ease;
-        }
-
-        .btn:hover::after {
-            transform: translateX(3px);
-        }
-
         .btn-primary {
-            background: var(--color-primary-pink);
+            background: linear-gradient(135deg, var(--color-primary-pink), var(--color-primary-purple));
             color: white;
-            box-shadow: 0 1px 3px rgba(233, 30, 140, 0.12);
+            box-shadow: 0 4px 16px rgba(255, 27, 141, 0.2);
         }
-
-        .btn-primary:hover {
-            background: #D1188B;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(233, 30, 140, 0.2);
-        }
-
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255, 27, 141, 0.3); }
         .btn-secondary {
-            background: white;
-            color: var(--color-primary-purple);
-            border: 1.5px solid var(--color-primary-purple);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(139, 92, 246, 0.04);
-            border-color: var(--color-primary-pink);
-            color: var(--color-primary-pink);
-        }
-
-        .hero-substatement {
-            font-size: 15px;
-            color: var(--color-text-secondary);
-            max-width: 720px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Section Title Styling */
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 3.8vw, 2.75rem);
-            font-weight: 700;
-            background: linear-gradient(125deg, var(--color-primary-pink) 0%, var(--color-primary-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 18px;
-            letter-spacing: -0.025em;
-            line-height: 1.35;
-        }
-
-        .section-description {
-            font-size: 1.0625rem;
-            color: var(--color-text-secondary);
-            max-width: 880px;
-            margin: 24px auto 0;
-            line-height: 1.68;
-        }
-
-        /* Focus Section */
-        .focus-section {
-            background: white;
-            padding: 88px 40px;
-        }
-
-        .focus-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 26px;
-            max-width: 1140px;
-            margin: 0 auto;
-        }
-
-        .focus-card {
-            background: white;
-            border: 1.5px solid var(--color-border);
-            border-radius: 10px;
-            padding: 36px 28px;
-            text-align: center;
-            transition: all 0.25s ease;
-        }
-
-        .focus-card:hover {
-            border-color: var(--color-primary-purple);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.1);
-        }
-
-        .focus-icon {
-            width: 52px;
-            height: 52px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .focus-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .focus-card h3 {
-            font-size: 1.175rem;
-            color: var(--color-primary-purple);
-            margin-bottom: 10px;
-            font-weight: 600;
-            letter-spacing: -0.015em;
-        }
-
-        .focus-card p {
-            font-size: 14.5px;
-            color: var(--color-text-secondary);
-            line-height: 1.55;
-        }
-
-        /* Solutions Section */
-        .solutions-section {
-            background: var(--color-background);
-        }
-
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
-
-        .solution-card {
-            background: white;
-            border: 1.5px solid var(--color-border);
-            border-radius: 10px;
-            padding: 36px;
-            transition: all 0.25s ease;
-        }
-
-        .solution-card:hover {
-            border-color: var(--color-primary-pink);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 32px rgba(233, 30, 140, 0.09);
-        }
-
-        .solution-icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 22px;
-        }
-
-        .solution-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .solution-card h3 {
-            font-size: 1.3rem;
-            color: var(--color-primary-pink);
-            margin-bottom: 14px;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        .solution-card p {
-            color: var(--color-text-secondary);
-            font-size: 14.5px;
-            line-height: 1.65;
-            margin-bottom: 22px;
-        }
-
-        .solution-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .solution-list li {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            color: var(--color-text-secondary);
-            font-size: 14px;
-            margin-bottom: 9px;
-            line-height: 1.5;
-        }
-
-        .solution-list li::before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            background: var(--color-primary-purple);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        /* IP Section */
-        .ip-section {
-            background: white;
-        }
-
-        .ip-description {
-            font-size: 1.0625rem;
-            color: var(--color-text-secondary);
-            max-width: 1040px;
-            margin: 0 auto 56px;
-            text-align: center;
-            line-height: 1.68;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 22px;
-            margin-bottom: 56px;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 32px 18px;
-            background: white;
-            border: 1.5px solid var(--color-border);
-            border-radius: 10px;
-            transition: all 0.25s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(233, 30, 140, 0.08);
-            border-color: var(--color-primary-pink);
-        }
-
-        .stat-icon {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 14px;
-        }
-
-        .stat-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .stat-number {
-            font-size: 1.65rem;
-            font-weight: 700;
-            color: var(--color-primary-pink);
-            margin-bottom: 6px;
-            letter-spacing: -0.025em;
-        }
-
-        .stat-label {
-            color: var(--color-text-secondary);
-            font-size: 13.5px;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* CTA Section */
-        .final-cta {
-            text-align: center;
-            padding: 108px 40px;
-            background: var(--color-background);
-        }
-
-        .final-cta h2 {
-            font-size: clamp(2.3rem, 4.5vw, 3.2rem);
-            font-weight: 700;
-            background: linear-gradient(125deg, var(--color-primary-pink) 0%, var(--color-primary-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 28px;
-            letter-spacing: -0.025em;
-        }
-
-        .final-cta-description {
-            font-size: 1.0625rem;
-            color: var(--color-text-secondary);
-            max-width: 820px;
-            margin: 0 auto 36px;
-            line-height: 1.68;
-        }
-
-        .contact-email {
-            font-size: 1.275rem;
-            color: var(--color-primary-purple);
-            font-weight: 600;
-            margin: 36px 0;
-            letter-spacing: -0.015em;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 56px 40px;
-            background: white;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .footer-logo {
-            margin-bottom: 22px;
-        }
-
-        .footer-logo img {
-            height: 48px;
-            opacity: 0.96;
-        }
-
-        footer p {
-            color: var(--color-text-secondary);
-            font-size: 14.5px;
-            line-height: 1.75;
-        }
-
-        footer strong {
+            background: var(--color-surface);
             color: var(--color-text-primary);
+            border: 1.5px solid var(--color-border-light);
+        }
+        .btn-secondary:hover { background: var(--color-surface-hover); border-color: var(--color-primary-purple); }
+
+        /* ── STATS BAR ── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            padding: 32px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .stat-item { text-align: center; }
+        .stat-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-primary-pink), var(--color-primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .stat-label { font-size: 14px; color: var(--color-text-muted); }
+
+        /* ── SECTION HEADERS ── */
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 20px;
+            color: var(--color-primary-purple);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.025em;
+        }
+        .section-title .gradient-text {
+            background: linear-gradient(135deg, var(--color-primary-pink), var(--color-primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
         }
 
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 8px;
+        /* ── MISSION ── */
+        .mission-section {
+            background: linear-gradient(135deg, rgba(255, 27, 141, 0.05), rgba(167, 139, 250, 0.05));
+            border: 1px solid var(--color-border-light);
+            border-radius: 24px;
+            padding: 80px 60px;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .mission-vision {
+            font-size: 1.5rem;
+            color: var(--color-text-primary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+        .mission-statement {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--color-primary-pink);
-            border-radius: 2px;
+        /* ── IP STATS ── */
+        .ip-focus-section { margin-top: 0; }
+        .ip-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .ip-stat-card {
+            background: linear-gradient(135deg, rgba(255, 27, 141, 0.08), rgba(167, 139, 250, 0.08));
+            border: 2px solid var(--color-border-light);
+            border-radius: 16px;
+            padding: 20px 24px;
+            text-align: center;
             transition: all 0.3s ease;
         }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+        .ip-stat-card:hover {
+            border-color: var(--color-primary-pink);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(255, 27, 141, 0.2);
         }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
+        .ip-stat-number {
+            font-size: 2.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-primary-pink), var(--color-primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
         }
+        .ip-stat-label { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 600; }
 
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+        /* ── USE CASES ── */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
         }
+        .use-case-card {
+            background: var(--color-surface);
+            border: 1.5px solid var(--color-border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .use-case-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--color-primary-pink), var(--color-primary-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .use-case-card:hover::before { transform: scaleX(1); }
+        .use-case-card:hover {
+            border-color: var(--color-primary-purple);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(167, 139, 250, 0.15);
+        }
+        .use-case-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(255, 27, 141, 0.1);
+            color: var(--color-primary-pink);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .use-case-card h3 { font-size: 1.5rem; margin-bottom: 16px; color: var(--color-text-primary); }
+        .use-case-card p { color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 20px; }
 
-        /* Mobile Responsiveness */
+        .challenge-solution { margin-top: 24px; }
+        .challenge-solution h4 {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .challenge-solution ul { list-style: none; padding: 0; }
+        .challenge-solution li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 6px;
+            color: var(--color-text-secondary);
+            font-size: 13px;
+        }
+        .challenge-solution li::before { content: '•'; color: var(--color-primary-purple); font-weight: 700; }
+
+        /* ── WHY ── */
+        .why-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+        .why-card {
+            background: var(--color-surface);
+            border: 1.5px solid var(--color-border);
+            border-radius: 16px;
+            padding: 28px;
+        }
+        .why-card.why-now { background: linear-gradient(135deg, rgba(255, 27, 141, 0.05), transparent); border-color: rgba(255, 27, 141, 0.2); }
+        .why-card.why-us  { background: linear-gradient(135deg, rgba(167, 139, 250, 0.05), transparent); border-color: rgba(167, 139, 250, 0.2); }
+        .why-card h3 { font-size: 1.75rem; margin-bottom: 24px; color: var(--color-text-primary); }
+        .why-card ul { list-style: none; padding: 0; }
+        .why-card li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; color: var(--color-text-secondary); line-height: 1.5; font-size: 14px; }
+        .why-card li::before { content: '✓'; color: var(--color-accent-green); font-weight: 700; flex-shrink: 0; }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 27, 141, 0.08), rgba(167, 139, 250, 0.08));
+            border: 1px solid var(--color-border-light);
+            border-radius: 24px;
+            padding: 48px 40px;
+        }
+        .cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px; }
+        .cta-section p { font-size: 1.125rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 36px; }
+        .contact-email { font-size: 1.25rem; color: var(--color-primary-purple); font-weight: 600; margin: 32px 0; }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 60px 40px;
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+        footer p { color: var(--color-text-muted); font-size: 14px; }
+
+        /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-            .solutions-grid,
-            .focus-cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .why-section, .use-cases-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
-            nav {
-                padding: 14px 20px;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            nav ul {
+            .menu-toggle { display: flex; }
+            .nav-menu {
                 position: fixed;
-                top: 71px;
-                left: -100%;
-                width: 100%;
-                background: white;
+                top: 60px; left: 0; right: 0;
+                background: var(--color-surface);
                 flex-direction: column;
                 gap: 0;
-                padding: 20px 0;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                transition: left 0.3s ease;
-                z-index: 999;
-            }
-
-            nav ul.active {
-                left: 0;
-            }
-
-            nav ul li {
-                width: 100%;
-                text-align: center;
-                padding: 12px 0;
+                padding: 20px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.3);
                 border-bottom: 1px solid var(--color-border);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
             }
-
-            nav ul li:last-child {
-                border-bottom: none;
-            }
-
-            nav a {
-                font-size: 15px;
-                display: block;
-                padding: 8px 20px;
-            }
-
-            .nav-cta {
-                margin: 10px 20px;
-                padding: 12px 20px;
-                display: inline-block;
-            }
-
-            .logo-text {
-                font-size: 14px;
-            }
-
-            .logo-icon-img {
-                height: 32px;
-            }
-
-            section {
-                padding: 40px 22px;
-                padding-top: 90px;
-            }
-
-            .hero {
-                padding-top: 100px;
-                min-height: auto;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-                margin-bottom: 24px;
-            }
-
-            .hero h2 {
-                font-size: 1.1rem;
-                margin-bottom: 28px;
-            }
-
-            .hero-supporting {
-                font-size: 0.95rem;
-            }
-
-            .btn {
-                padding: 12px 24px;
-                font-size: 14px;
-            }
-
-            .focus-cards {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .solutions-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 20px;
-                line-height: 1.4;
-            }
-
-            .section-description {
-                font-size: 0.95rem;
-            }
-
-            .section-header {
-                margin-bottom: 48px;
-            }
-
-            .focus-section {
-                padding: 40px 22px;
-                padding-top: 90px;
-            }
-
-            .final-cta {
-                padding: 40px 22px;
-                padding-top: 90px;
-            }
-
-            .final-cta h2 {
-                font-size: 2rem;
-            }
-
-            footer {
-                padding: 40px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-                margin-bottom: 20px;
-            }
-
-            .hero h2 {
-                font-size: 1rem;
-                margin-bottom: 24px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .contact-email {
-                font-size: 1rem;
-                word-break: break-all;
-            }
+            .nav-menu.active { transform: translateY(0); opacity: 1; visibility: visible; }
+            .nav-menu li { width: 100%; padding: 12px 0; }
+            section { padding: 64px 24px; }
+            .hero { padding-top: 100px; }
+            .stats-bar { grid-template-columns: 1fr; gap: 24px; }
+            .mission-section { padding: 48px 28px; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <nav>
             <div class="logo-container">
-                <a href="#" class="logo-link">
-                    <img class="logo-icon-img" src="logo.jpg" alt="OpenBraket">
-                    <span class="logo-text"><span class="logo-text-open">Open</span><span class="logo-text-braket">Braket</span></span>
-                </a>
+                <img class="logo-icon-img" src="logo.png" alt="OpenBraket">
+                <span class="logo-text">
+                    <span class="logo-text-open">Open</span><span class="logo-text-braket">Braket</span>
+                </span>
             </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul id="nav-menu">
-                <li><a href="#focus">Focus</a></li>
-                <li><a href="#solutions">Solutions</a></li>
-                <li><a href="#ip">IP & Technology</a></li>
-                <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#products">IP Portfolio</a></li>
+                <li><a href="#use-cases">Use Cases</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="nav-cta">Get Started</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- ── HERO ── -->
     <section class="hero">
         <div class="hero-content">
-            <h1><span class="hero-text-open">Open</span><span class="hero-text-braket">Braket</span></h1>
-            <h2>Algorithm Development in the Pre-Fault Tolerant and Fault-Tolerant Quantum Computing Era for Real-World Problems.</h2>
-            <p class="hero-supporting">
-                We are not the largest. We are <strong>fundamental</strong>, <strong>hype-free</strong>, and <strong>innovation-driven</strong> to design solutions that serve humankind at large — easy, reliable, safe, and fast.
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>Quantum Algorithm as a Service</span>
+            </div>
+
+            <h1>
+                Bridging the <span class="gradient-text">Abstraction Gap</span><br>
+                in Quantum Computing
+            </h1>
+
+            <p class="hero-subtitle">
+                Quantum algorithms for any domain — from NISQ to fault-tolerant hardware.
+                Built on India's most ambitious quantum IP portfolio.
             </p>
+
             <div class="hero-cta">
-                <a href="mailto:contact@openbraket.com?subject=Partnership%20Inquiry" class="btn btn-primary">Partner With Us</a>
-                <a href="#solutions" class="btn btn-secondary">Our Technology</a>
+                <a href="#use-cases" class="btn btn-primary">Explore Use Cases</a>
+                <a href="#contact" class="btn btn-secondary">Schedule a Call</a>
             </div>
-            <p class="hero-substatement">
-                Fighting for Quantum Benchmarking towards Advantage? Join Open Braket to accelerate your Business.
+
+
+        </div>
+    </section>
+
+    <!-- ── MISSION ── -->
+    <section id="mission">
+        <div class="section-header">
+            <div class="section-badge">Our Mission</div>
+            <h2 class="section-title">
+                Enabling <span class="gradient-text">Quantum Utility</span> for Everyone
+            </h2>
+        </div>
+
+        <div class="mission-section">
+            <p class="mission-vision">
+                We are building the <strong>utility stack for tomorrow.</strong>
+            </p>
+            <p class="mission-statement">
+                OpenBraket is an IP-first Quantum Algorithm as a Service company.
+                We develop algorithms for near-term hardware — from NISQ to fault-tolerant —
+                serving business teams who need quantum results without quantum expertise,
+                and research groups who need composable tools built on Qiskit.
+                Finding the right problem is harder than solving it.
+                We dedicate a focused team to identifying high-value problems in optimisation, chemistry, and ML
+                where quantum algorithms create genuine, patentable advantage.
             </p>
         </div>
     </section>
 
-    <section id="focus" class="focus-section">
+    <!-- ── IP PORTFOLIO ── -->
+    <section id="products">
         <div class="section-header">
-            <h2 class="section-title">Quantum Algorithms for Near-Term Applications</h2>
+            <div class="section-badge">IP Portfolio</div>
+            <h2 class="section-title">
+                Building India's <span class="gradient-text">Quantum IP Portfolio</span>
+            </h2>
             <p class="section-description">
-                We develop algorithms optimized for current quantum hardware devices, bridging quantum potential and commercial deployment. Our approach is grounded in fundamental research and internationally recognized expertise, not hype.
+                Algorithm development is our core. Every problem we solve, every tool we build on Qiskit,
+                every domain mapping we develop — is designed to generate defensible IP.
+                150+ patents targeted over five years, covering novel algorithms,
+                problem-to-quantum mappings, and near-term application methods
+                from NISQ utility today toward fault-tolerant quantum computing by 2030.
             </p>
-            <p class="section-description" style="margin-top: 20px;">
-                Our work focuses on creating problem mapping frameworks and simulation platforms that lift problems from any domain into a unified computational model, empowering researchers to run domain-agnostic algorithms across very different fields.
+        </div>
+
+        <div class="ip-focus-section">
+            <div class="ip-stat-grid">
+                <div class="ip-stat-card">
+                    <div class="ip-stat-number">150+</div>
+                    <div class="ip-stat-label">Patents Targeted (5 Years)</div>
+                </div>
+                <div class="ip-stat-card">
+                    <div class="ip-stat-number">10+</div>
+                    <div class="ip-stat-label">Patents in Pipeline</div>
+                </div>
+                <div class="ip-stat-card">
+                    <div class="ip-stat-number">TRL 4→5</div>
+                    <div class="ip-stat-label">Solar Use Case</div>
+                </div>
+                <div class="ip-stat-card">
+                    <div class="ip-stat-number">Global</div>
+                    <div class="ip-stat-label">Academic Partnerships</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── USE CASES ── -->
+    <section id="use-cases">
+        <div class="section-header">
+            <div class="section-badge">Algorithm Applications</div>
+            <h2 class="section-title">
+                Algorithms for <span class="gradient-text">Real Problems</span>
+            </h2>
+            <p class="section-description">
+                We identify problems where quantum algorithms create genuine advantage —
+                then build the algorithms, generate the IP, and deliver the tools.
+                Solar thin-film design and financial time series are our first two applications.
+                They are proof points for our algorithm development process, not the limits of our scope.
             </p>
         </div>
 
-        <div class="focus-cards">
-            <div class="focus-card">
-                <div class="focus-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+        <div class="use-cases-grid">
+            <div class="use-case-card">
+                <div class="use-case-badge">Use Case I</div>
+                <h3>Quantum-Accelerated Solar Thin-Film Design</h3>
+                <p>
+                    Unlocking terawatt renewable energy future through material discovery
+                </p>
+                <div class="challenge-solution">
+                    <h4>Challenges</h4>
+                    <ul>
+                        <li>Current solar cells achieve less than 30% efficiency</li>
+                        <li>India needs 550 GW; global demand is far greater</li>
+                        <li>Classical systems can explore only 8 materials in a design stack</li>
+                        <li>Combinatorial optimisation across billion-order parameter spaces</li>
+                    </ul>
                 </div>
-                <h3>Near-Term Ready</h3>
-                <p>Optimized for Current Hardware</p>
+                <div class="challenge-solution" style="margin-top: 20px;">
+                    <h4>Our Solution</h4>
+                    <ul>
+                        <li>Quantum optimisation algorithm tested across 30+ materials</li>
+                        <li>Properties verified on real quantum hardware</li>
+                    </ul>
+                </div>
             </div>
-            <div class="focus-card">
-                <div class="focus-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="3" stroke="#8B5CF6" stroke-width="2"/>
-                        <path d="M12 2V6M12 18V22M22 12H18M6 12H2M19.07 4.93L16.24 7.76M7.76 16.24L4.93 19.07M19.07 19.07L16.24 16.24M7.76 7.76L4.93 4.93" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
+
+            <div class="use-case-card">
+                <div class="use-case-badge">Use Case II</div>
+                <h3>Quantum Multivariate Time Series for Finance</h3>
+                <p>
+                    Risk assessment and portfolio optimisation using quantum algorithms
+                </p>
+                <div class="challenge-solution">
+                    <h4>Challenges</h4>
+                    <ul>
+                        <li>Highly volatile market conditions with fast-changing dynamics</li>
+                        <li>Inefficient classical strategies for derivative pricing and portfolio optimisation</li>
+                        <li>Computationally massive parameter spaces</li>
+                        <li>Real-time market analysis demands low-latency computation</li>
+                    </ul>
                 </div>
-                <h3>Research-Backed</h3>
-                <p>Fundamental Science Foundation</p>
-            </div>
-            <div class="focus-card">
-                <div class="focus-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" stroke="#8B5CF6" stroke-width="2"/>
-                        <path d="M12 2C8.5 6 8.5 18 12 22M12 2C15.5 6 15.5 18 12 22M2 12C6 8.5 18 8.5 22 12M2 12C6 15.5 18 15.5 22 12" stroke="#8B5CF6" stroke-width="2"/>
-                    </svg>
+                <div class="challenge-solution" style="margin-top: 20px;">
+                    <h4>Our Solution</h4>
+                    <ul>
+                        <li>Quantum time series models for multivariate datasets</li>
+                        <li>Portfolio optimisation and risk assessment at full market scale</li>
+                    </ul>
                 </div>
-                <h3>Globally Ambitious</h3>
-                <p>International Partnerships</p>
             </div>
         </div>
     </section>
 
-    <section id="solutions" class="solutions-section">
+    <!-- ── WHY ── -->
+    <section id="why-us">
         <div class="section-header">
-            <h2 class="section-title">Three Pillars of Quantum Innovation</h2>
+            <div class="section-badge">Our Edge</div>
+            <h2 class="section-title">
+                Why <span class="gradient-text">OpenBraket</span>?
+            </h2>
         </div>
-        
-        <div class="solutions-grid">
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="3" stroke="#E91E8C" stroke-width="2"/>
-                        <circle cx="6" cy="6" r="2" stroke="#E91E8C" stroke-width="1.5"/>
-                        <circle cx="18" cy="6" r="2" stroke="#E91E8C" stroke-width="1.5"/>
-                        <circle cx="6" cy="18" r="2" stroke="#E91E8C" stroke-width="1.5"/>
-                        <circle cx="18" cy="18" r="2" stroke="#E91E8C" stroke-width="1.5"/>
-                        <path d="M8 7L10 10M16 7L14 10M8 17L10 14M16 17L14 14" stroke="#E91E8C" stroke-width="1.5"/>
-                    </svg>
-                </div>
-                <h3>Materials Discovery</h3>
-                <p>Quantum chemistry simulations for drug discovery, battery materials, catalysts, and semiconductor design.</p>
-                <ul class="solution-list">
-                    <li>Quantum Chemistry</li>
-                    <li>Drug Discovery</li>
-                    <li>Battery Materials</li>
-                    <li>Catalyst Design</li>
-                    <li>Semiconductor Modeling</li>
-                    <li>Molecular Simulation</li>
+
+        <div class="why-section">
+            <div class="why-card why-now">
+                <h3>Why Now?</h3>
+                <ul>
+                    <li>Hardware is advancing fast — NISQ utility is here, fault-tolerant is within the decade</li>
+                    <li>The algorithm layer is the biggest unsolved gap — confirmed by every industry roadmap</li>
+                    <li>An 18–24 month first-mover window to establish IP before the market consolidates</li>
+                    <li>Research institutions and business units are both actively seeking quantum-ready tools</li>
+                    <li>India has the talent and the network — but lacks a dedicated quantum algorithm IP house</li>
                 </ul>
             </div>
 
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 3L8 8L3 13" stroke="#E91E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M21 3L16 8L21 13" stroke="#E91E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8 21L12 16L16 21" stroke="#E91E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="12" cy="8" r="2" stroke="#E91E8C" stroke-width="2"/>
-                    </svg>
-                </div>
-                <h3>Quantum for Finance</h3>
-                <p>Advanced quantum algorithms for portfolio optimization, risk analysis, derivatives pricing, and fraud detection.</p>
-                <ul class="solution-list">
-                    <li>Portfolio Optimization</li>
-                    <li>Risk Analysis & Modeling</li>
-                    <li>Derivatives Pricing</li>
-                    <li>Fraud Detection</li>
-                    <li>Quantum Monte Carlo</li>
-                    <li>Variational Circuits</li>
-                </ul>
-            </div>
-
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="3" y="3" width="7" height="7" rx="1" stroke="#E91E8C" stroke-width="2"/>
-                        <rect x="14" y="3" width="7" height="7" rx="1" stroke="#E91E8C" stroke-width="2"/>
-                        <rect x="3" y="14" width="7" height="7" rx="1" stroke="#E91E8C" stroke-width="2"/>
-                        <rect x="14" y="14" width="7" height="7" rx="1" stroke="#E91E8C" stroke-width="2"/>
-                        <circle cx="12" cy="12" r="1.5" fill="#E91E8C"/>
-                    </svg>
-                </div>
-                <h3>Hybrid Quantum-Classical & Middleware</h3>
-                <p>Seamless integration of quantum and classical computing through advanced middleware and kernel methods.</p>
-                <ul class="solution-list">
-                    <li>Quantum Feature Maps</li>
-                    <li>Kernel Methods</li>
-                    <li>Classical Neural Networks Integration</li>
-                    <li>Hybrid Algorithms</li>
-                    <li>Middleware Development</li>
-                    <li>API & SDK Tools</li>
+            <div class="why-card why-us">
+                <h3>Why Us?</h3>
+                <ul>
+                    <li>IP-first from day one — every algorithm, every mapping, every tool is built to patent</li>
+                    <li>Strong national and international network across academia and industry, ready to deploy</li>
+                    <li>Dedicated problem identification team — we find the right quantum problems before we solve them</li>
+                    <li>We serve both naive business users and advanced research groups with the same platform</li>
+                    <li>Multi-objective and constrained optimisation as a core algorithmic focus — high-value, under-explored</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <section id="ip" class="ip-section">
-        <div class="section-header">
-            <h2 class="section-title">An IP-First Quantum Computing Company</h2>
-        </div>
-
-        <p class="ip-description">
-            Our competitive advantage lies in proprietary shallow-circuit architectures, advanced error mitigation techniques, and application-specific quantum kernels. We are building a robust patent portfolio that protects our innovations and positions us as leaders in the near-term quantum computing landscape.
+    <section id="contact" class="cta-section">
+        <h2>Ready to find the right <span class="gradient-text">quantum problem</span>?</h2>
+        <p>
+            We work with enterprise partners, research institutions, and university labs
+            to identify high-value problems, develop the algorithms, and build tools that run on real hardware today.
         </p>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="6" width="20" height="12" rx="2" stroke="#E91E8C" stroke-width="2"/>
-                        <path d="M6 10H10M6 14H8" stroke="#E91E8C" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Qubit Hardware Access</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#E91E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M14 2V8H20" stroke="#E91E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div class="stat-number">10+</div>
-                <div class="stat-label">Patents in Pipeline</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="8" r="3" stroke="#E91E8C" stroke-width="2"/>
-                        <path d="M12 11V22M8 15L12 11L16 15" stroke="#E91E8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M5 22H19" stroke="#E91E8C" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <div class="stat-number">High Impact</div>
-                <div class="stat-label">Publications</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="3" width="20" height="14" rx="2" stroke="#E91E8C" stroke-width="2"/>
-                        <path d="M8 21H16M12 17V21" stroke="#E91E8C" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="12" cy="10" r="2" fill="#E91E8C"/>
-                    </svg>
-                </div>
-                <div class="stat-number">Latest</div>
-                <div class="stat-label">Hardware Running Algorithms</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="9" cy="7" r="4" stroke="#E91E8C" stroke-width="2"/>
-                        <circle cx="17" cy="17" r="4" stroke="#E91E8C" stroke-width="2"/>
-                        <path d="M12 9L14 15" stroke="#E91E8C" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <div class="stat-number">Global</div>
-                <div class="stat-label">Hardware Partnerships</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="final-cta">
-        <h2>Ready to Explore Quantum Advantage?</h2>
-        <p class="final-cta-description">
-            We invite investors, enterprise partners, and quantum researchers to collaborate with us in pioneering the next generation of quantum algorithms for real-world applications.
-        </p>
-        
-        <p class="contact-email"><span id="email-display"></span></p>
-        
-        <script>
-            // Email protection - assembled client-side
-            const user = 'contact';
-            const domain = 'openbraket.com';
-            const emailDisplay = document.getElementById('email-display');
-            emailDisplay.textContent = user + '@' + domain;
-            emailDisplay.style.cursor = 'pointer';
-            emailDisplay.onclick = function() {
-                window.location.href = 'mailto:' + user + '@' + domain;
-            };
-        </script>
-        
+        <p class="contact-email">contact@openbraket.com</p>
         <div class="hero-cta">
-            <a href="#" id="schedule-call-btn" class="btn btn-primary">Schedule a Call</a>
-            <a href="#focus" class="btn btn-secondary">Learn More</a>
+            <a href="mailto:contact@openbraket.com?subject=Partnership%20Inquiry" class="btn btn-primary">Schedule a Call</a>
+            <a href="#products" class="btn btn-secondary">Learn More</a>
         </div>
-        
-        <script>
-            // Protected email link for Schedule a Call
-            document.getElementById('schedule-call-btn').onclick = function(e) {
-                e.preventDefault();
-                const user = 'contact';
-                const domain = 'openbraket.com';
-                window.location.href = 'mailto:' + user + '@' + domain + '?subject=Schedule%20a%20Call';
-            };
-        </script>
     </section>
 
     <footer>
-        <div class="footer-logo">
-            <img src="logo.jpg" alt="OpenBraket">
-        </div>
-        <p>&copy; 2026 <strong>OpenBraket</strong>. Pioneering Quantum Algorithms for Near-Term Applications.</p>
-        <p style="margin-top: 6px;">Bengaluru, India | Global Quantum Computing Innovation</p>
+        <p>&copy; 2026 <strong>OpenBraket</strong> &nbsp;·&nbsp; Quantum Algorithm as a Service</p>
+        <p style="margin-top: 8px;">Bangalore, India &nbsp;·&nbsp; Global Quantum Computing Innovation</p>
     </footer>
 
     <script>
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger');
+        const menuToggle = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
+        menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => navMenu.classList.remove('active'));
         });
     </script>
 </body>
